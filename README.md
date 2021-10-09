@@ -1,8 +1,6 @@
 # DevOps project [5SE4]
 
-A brief description of what this project does and who it's for
-
-
+We are working on a timesheet software with an Automate CI/CD Testing process
 ## Authors
 
 
