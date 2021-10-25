@@ -148,5 +148,9 @@ public class EmployeServiceImpl implements IEmployeService {
 	public List<Employe> getAllEmployes() {
 				return (List<Employe>) employeRepository.findAll();
 	}
+	
+	public Employe getEmployeById(int id) {
+			return  employeRepository.findById(id).get();
+	}
 
 }

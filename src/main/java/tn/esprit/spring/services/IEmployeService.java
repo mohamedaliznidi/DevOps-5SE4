@@ -29,6 +29,7 @@ public interface IEmployeService {
 	public float getSalaireByEmployeIdJPQL(int employeId);
 	public Double getSalaireMoyenByDepartementId(int departementId);
 	public List<Employe> getAllEmployes();
+	public Employe getEmployeById(int id);
 	public List<Timesheet> getTimesheetsByMissionAndDate(Employe employe, Mission mission, 
 	Date dateDebut, Date dateFin);
 	
