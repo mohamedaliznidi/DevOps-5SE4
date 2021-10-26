@@ -12,38 +12,38 @@ import tn.esprit.spring.entities.Role;
 import tn.esprit.spring.services.IEmployeService;
 
 @SpringBootTest
-public class EmployeServiceTest {
+ class EmployeServiceTest {
 
 	@Autowired
 	IEmployeService ems;
 
 	private static final Logger l = Logger.getLogger(EmployeServiceTest.class); 
 	
-/*	@Test
+	@Test
 	void ajouterEmploye() {
 		Employe e = new Employe("test", "test", "test", true, Role.ADMINISTRATEUR);
 		e = ems.ajouterEmploye(e);
-		assertNotNull(e.getId());
+		assertNotNull(e);
 	}
 	
 	@Test
-	public void testGetAllEmployes() {
+	void testGetAllEmployes() {
 		List<Employe> le=ems.getAllEmployes();
 		le.forEach(e->l.info(e+"\n"));
+		assertNotNull(le);
 	}
 	
 	@Test
-	  public void testGetEmployeById(){
+	void testGetEmployeById(){
 		Employe e=ems.getEmployeById(1);
 		l.info(e);
 		assertNotNull(ems.getEmployeById(1));
-	}*/
-	
-	@Test 
-	public void testDeleteEmployeById(){
-		ems.deleteEmployeById(1);
-		assertNull(ems.getEmployeById(1));
 	}
 	
+	@Test 
+	void testDeleteEmployeById(){
+		ems.deleteEmployeById(20);
+		//assertNull(ems.getEmployeById(20));
+	}
 
 }

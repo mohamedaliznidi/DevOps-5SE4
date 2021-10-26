@@ -3,6 +3,7 @@ package tn.esprit.spring.services;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,17 +36,33 @@ public class EmployeServiceImpl implements IEmployeService {
 		return employeRepository.save(employe);	
 	}
 
-	public void mettreAjourEmailByEmployeId(String email, int employeId) {
-		Employe employe = employeRepository.findById(employeId).get();
+	public void mettreAjourEmailByEmployeId(String email, int id) {
+		Optional<Employe> e = employeRepository.findById(id);
+
+		  Employe employe = new Employe();
+		if (e.isPresent()) {
+			  employe= e.get();
+			}
 		employe.setEmail(email);
 		employeRepository.save(employe);
 
 	}
 
 	@Transactional	
-	public void affecterEmployeADepartement(int employeId, int depId) {
-		Departement depManagedEntity = deptRepoistory.findById(depId).get();
-		Employe employeManagedEntity = employeRepository.findById(employeId).get();
+	public  void affecterEmployeADepartement(int employeId, int depId) {
+
+		Optional<Departement> d = deptRepoistory.findById(depId);
+
+		  Departement depManagedEntity = new Departement();
+		if (d.isPresent()) {
+			depManagedEntity= d.get();
+			}
+		Optional<Employe> e = employeRepository.findById(employeId);
+
+		  Employe employeManagedEntity = new Employe();
+		if (e.isPresent()) {
+			employeManagedEntity= e.get();
+			}
 
 		if(depManagedEntity.getEmployes() == null){
 
@@ -62,7 +79,12 @@ public class EmployeServiceImpl implements IEmployeService {
 	@Transactional
 	public void desaffecterEmployeDuDepartement(int employeId, int depId)
 	{
-		Departement dep = deptRepoistory.findById(depId).get();
+		Optional<Departement> d = deptRepoistory.findById(depId);
+
+		  Departement dep = new Departement();
+		if (d.isPresent()) {
+			  dep= d.get();
+			}
 
 		int employeNb = dep.getEmployes().size();
 		for(int index = 0; index < employeNb; index++){
@@ -79,21 +101,41 @@ public class EmployeServiceImpl implements IEmployeService {
 	}
 
 	public void affecterContratAEmploye(int contratId, int employeId) {
-		Contrat contratManagedEntity = contratRepoistory.findById(contratId).get();
-		Employe employeManagedEntity = employeRepository.findById(employeId).get();
+		Optional<Contrat> c = contratRepoistory.findById(contratId);
+
+		  Contrat contratManagedEntity = new Contrat();
+		if (c.isPresent()) {
+			contratManagedEntity= c.get();
+			}
+		Optional<Employe> e = employeRepository.findById(employeId);
+
+		  Employe employeManagedEntity = new Employe();
+		if (e.isPresent()) {
+			employeManagedEntity= e.get();
+			}
 
 		contratManagedEntity.setEmploye(employeManagedEntity);
 		contratRepoistory.save(contratManagedEntity);
 		
 	}
 
-	public String getEmployePrenomById(int employeId) {
-		Employe employeManagedEntity = employeRepository.findById(employeId).get();
-		return employeManagedEntity.getPrenom();
+	public String getEmployePrenomById(int id) {
+		Optional<Employe> e = employeRepository.findById(id);
+
+		  Employe employe = new Employe();
+		if (e.isPresent()) {
+			  employe= e.get();
+			}
+		return employe.getPrenom();
 	}
-	public void deleteEmployeById(int employeId)
+	public void deleteEmployeById(int id)
 	{
-		Employe employe = employeRepository.findById(employeId).get();
+		Optional<Employe> e = employeRepository.findById(id);
+
+		  Employe employe = new Employe();
+		if (e.isPresent()) {
+			  employe= e.get();
+			}
 
 		//Desaffecter l'employe de tous les departements
 		//c'est le bout master qui permet de mettre a jour
@@ -106,7 +148,12 @@ public class EmployeServiceImpl implements IEmployeService {
 	}
 
 	public void deleteContratById(int contratId) {
-		Contrat contratManagedEntity = contratRepoistory.findById(contratId).get();
+		Optional<Contrat> c = contratRepoistory.findById(contratId);
+
+		  Contrat contratManagedEntity = new Contrat();
+		if (c.isPresent()) {
+			contratManagedEntity= c.get();
+			}
 		contratRepoistory.delete(contratManagedEntity);
 
 	}
@@ -150,7 +197,13 @@ public class EmployeServiceImpl implements IEmployeService {
 	}
 	
 	public Employe getEmployeById(int id) {
-			return  employeRepository.findById(id).get();
+		Optional<Employe> e = employeRepository.findById(id);
+
+		  Employe emp = new Employe();
+		if (e.isPresent()) {
+			  emp= e.get();
+			}
+			return emp  ;
 	}
 
 }

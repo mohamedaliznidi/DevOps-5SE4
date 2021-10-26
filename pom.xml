@@ -10,11 +10,11 @@
 	</parent>
 	<groupId>tn.esprit.spring</groupId>
 	<artifactId>DevOps--5SE4</artifactId>
-	<version>1.0</version>
+	<version>1.0.1</version>
 	<name>DevOps--5SE4</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -55,6 +55,11 @@
     <artifactId>log4j</artifactId>
     <version>1.2.17</version>
   </dependency>
+  <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+    </dependency>
 	</dependencies>
 
 	<build>
@@ -63,6 +68,27 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+         <groupId>org.jacoco</groupId>
+         <artifactId>jacoco-maven-plugin</artifactId>
+         <version>0.8.3</version>
+         <executions>
+            <execution>
+               <id>jacoco-initialize</id>
+               <goals>
+                  <goal>prepare-agent</goal>
+               </goals>
+               <phase>test-compile</phase>
+            </execution>
+            <execution>
+               <id>jacoco-site</id>
+               <phase>verify</phase>
+               <goals>
+                  <goal>report</goal>
+               </goals>
+            </execution>
+         </executions>
+      </plugin>
 		</plugins>
 	</build>
 
