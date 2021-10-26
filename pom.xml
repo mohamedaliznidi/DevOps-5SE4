@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>tn.esprit.spring</groupId>
 	<artifactId>DevOps--5SE4</artifactId>
-	<version>1.0.1</version>
+	<version>1.1</version>
 	<name>DevOps--5SE4</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
